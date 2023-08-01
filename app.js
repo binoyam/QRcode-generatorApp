@@ -1,7 +1,9 @@
-let imgBox = document.getElementById("img-box");
-let qrimage = document.getElementById("qrImage");
-let qrText = document.getElementById("qrText");
+const imgBox = document.getElementById("img-box");
+const qrImage = document.getElementById("qrImage");
+const qrText = document.getElementById("qrText");
+const btn = document.getElementById("btn");
 
+btn.addEventListener('click', generateQR);
 function generateQR() {
     if (qrText.value.length > 0) {
         qrImage.src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + qrText.value;
@@ -14,3 +16,9 @@ function generateQR() {
         }, 1000)
     }
 }
+qrText.addEventListener("keyup", e => {
+    e.preventDefault();
+    if (e.keyCode === 13) {
+        generateQR();
+    }
+});
